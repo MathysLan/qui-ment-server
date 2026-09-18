@@ -1,0 +1,14 @@
+{
+  "name": "qui-ment-server",
+  "version": "1.0.0",
+  "description": "Serveur arbitre du jeu « Qui Ment ? » (portfolio Mathys Langiny).",
+  "private": true,
+  "main": "server.js",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test-engine.mjs && node test.js"
+  },
+  "dependencies": { "ws": "^8.18.0" },
+  "license": "MIT"
+}
