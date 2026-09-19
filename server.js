@@ -23,6 +23,7 @@ const http = require('node:http');
 const { WebSocketServer } = require('ws');
 const { CATEGORIES } = require('./mots.js');
 const E = require('./engine.js');
+const { cleanAvatar } = require('./avatar.js');
 
 const PORT = process.env.PORT || 8092;
 const DEFAULT_ROUNDS = 5;
@@ -214,7 +215,8 @@ wss.on('connection', (ws) => {
 
     if (msg.action === 'join') {
       const name = String(msg.name || '').trim().slice(0, 16) || 'Joueur';
-      const avatar = String(msg.avatar || '🕵️').slice(0, 4);
+      // Emoji, ou photo de profil revalidée : voir avatar.js.
+      const avatar = cleanAvatar(msg.avatar, '🕵️');
       if (msg.code) {
         room = rooms.get(String(msg.code).toUpperCase().trim());
         if (!room) return fail('aucune partie avec ce code');
